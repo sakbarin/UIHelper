@@ -8,8 +8,8 @@ namespace Helper
 {
     public class UIHelper
     {
-        private static PasswordHelper _myPassword;
-        public static PasswordHelper myPassword
+        private static IPasswordHelper _myPassword;
+        public static IPasswordHelper myPassword
         {
             get
             {
@@ -44,23 +44,20 @@ namespace Helper
             }
         }
 
-        private static DateHelper _myDate;
-        public static DateHelper myDate
+        private static IDateHelper _myDate;
+        public static IDateHelper myDate
         {
             get
             {
                 if (_myDate == null)
-                {
-                    var numberHelper = new NumberHelper();
-                    _myDate = new DateHelper(numberHelper);
-                }
+                    _myDate = new DateHelper(UIHelper.myNumber);
 
                 return _myDate;
             }
         }
 
-        private static PersonnelHelper _myPersonnel;
-        public static PersonnelHelper myPersonnel
+        private static IPersonnelHelper _myPersonnel;
+        public static IPersonnelHelper myPersonnel
         {
             get
             {
@@ -71,24 +68,20 @@ namespace Helper
             }
         }
 
-        private static FileHelper _myFile;
-        public static FileHelper myFile
+        private static IFileHelper _myFile;
+        public static IFileHelper myFile
         {
             get
             {
                 if (_myFile == null)
-                {
-                    var numberHelper = new NumberHelper();
-                    var dateHelper = new DateHelper(numberHelper);
-                    _myFile = new FileHelper(numberHelper, dateHelper);
-                }
+                    _myFile = new FileHelper(UIHelper.myNumber, UIHelper.myDate);
 
                 return _myFile;
             }
         }
 
-        private static IPHelper _myIP;
-        public static IPHelper myIP
+        private static IIPHelper _myIP;
+        public static IIPHelper myIP
         {
             get
             {
