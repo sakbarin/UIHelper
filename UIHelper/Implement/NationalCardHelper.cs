@@ -63,10 +63,17 @@ namespace Helper
 
         public string GetStandardNationalID(string NationalID)
         {
-            NationalId = "0000000000" + NationalID.Trim();
-            NationalId = NationalId.Substring(NationalId.Length - 10);
+            try
+            {
+                NationalId = "0000000000" + NationalID.Trim();
+                NationalId = NationalId.Substring(NationalId.Length - 10);
 
-            return NationalId;
+                return NationalId;
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
     }
 }

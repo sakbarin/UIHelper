@@ -7,7 +7,6 @@ using System.IO;
 
 namespace Helper
 {
- 
     public class FileHelper : IFileHelper
     {
         private INumberHelper numberHelper;

@@ -30,9 +30,9 @@ namespace Helper
 
                 return gregDate;
             }
-            catch (Exception exception)
+            catch (Exception exc)
             {
-                throw exception;
+                throw exc;
             }
         }
 
@@ -85,9 +85,9 @@ namespace Helper
 
                 return string.Format("{0}/{1}/{2}", year, month, day);
             }
-            catch (Exception exception)
+            catch (Exception exc)
             {
-                throw exception;
+                throw exc;
             }
         }
 

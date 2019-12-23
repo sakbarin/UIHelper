@@ -20,33 +20,40 @@ namespace Helper
 
         public string GetIP4Address()
         {
-            string IP4Address = string.Empty;
-
-            foreach (IPAddress IpAdress in Dns.GetHostAddresses(HttpContext.Current.Request.UserHostAddress))
+            try
             {
-                if (IpAdress.AddressFamily.ToString() == InterNetwork)
+                string IP4Address = string.Empty;
+
+                foreach (IPAddress IpAdress in Dns.GetHostAddresses(HttpContext.Current.Request.UserHostAddress))
                 {
-                    IP4Address = IpAdress.ToString();
-                    break;
+                    if (IpAdress.AddressFamily.ToString() == InterNetwork)
+                    {
+                        IP4Address = IpAdress.ToString();
+                        break;
+                    }
                 }
-            }
 
-            if (IP4Address != string.Empty)
-            {
+                if (IP4Address != string.Empty)
+                {
+                    return IP4Address;
+                }
+
+
+                foreach (IPAddress IpAddress in Dns.GetHostAddresses(Dns.GetHostName()))
+                {
+                    if (IpAddress.AddressFamily.ToString() == InterNetwork)
+                    {
+                        IP4Address = IpAddress.ToString();
+                        break;
+                    }
+                }
+
                 return IP4Address;
             }
-
-
-            foreach (IPAddress IpAddress in Dns.GetHostAddresses(Dns.GetHostName()))
+            catch (Exception exc)
             {
-                if (IpAddress.AddressFamily.ToString() == InterNetwork)
-                {
-                    IP4Address = IpAddress.ToString();
-                    break;
-                }
+                throw exc;
             }
-
-            return IP4Address;
         }
     }
 }
